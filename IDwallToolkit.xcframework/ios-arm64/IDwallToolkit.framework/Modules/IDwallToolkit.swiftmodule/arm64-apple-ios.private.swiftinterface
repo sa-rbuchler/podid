@@ -1,0 +1,215 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name IDwallToolkit
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AVFoundation
+import CommonCrypto
+import CoreImage
+import CoreMotion
+import CoreTelephony
+import CryptoKit
+import DeveloperToolsSupport
+import Foundation
+@_exported import IDwallToolkit
+import MobileCoreServices
+import Swift
+import SwiftUI
+import UIKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_inheritsConvenienceInitializers @objc public class IDwallToolkitManager : ObjectiveC.NSObject {
+  @objc public static func sharedInstance() -> IDwallToolkit.IDwallToolkitManager
+  public func startFlow(_ flowType: IDwallToolkit.IDFlowType, withDocuments documents: [IDwallToolkit.IDDocumentType]? = nil, andInputOptions inputOptions: [IDwallToolkit.IDDocInputType]? = nil, onComplete callback: IDwallToolkit.IDwallToolkitFlowResult? = nil)
+  @objc public func startFlow(_ flowType: IDwallToolkit.IDFlowType, withDocuments documents: [Swift.String], andInputOptions inputOptions: [Swift.String], onComplete callback: IDwallToolkit.IDwallToolkitFlowResult? = nil)
+  public func requestDocument(withDocument document: IDwallToolkit.IDDocumentType, inputOption: IDwallToolkit.IDDocInputType, documentSide: IDwallToolkit.IDDocSide? = .Front, callback: IDwallToolkit.IDwallToolkitImageResult? = nil)
+  @objc public func requestDocument(withDocument documentOption: Swift.String, inputOption: Swift.String, documentSide: Swift.String? = "front", callback: IDwallToolkit.IDwallToolkitImageResult? = nil)
+  @objc public func requestLiveness(onComplete callback: IDwallToolkit.IDwallToolkitImageResult? = nil)
+  @objc public func send(type: IDwallToolkit.IDWallSend, onComplete callback: IDwallToolkit.IDwallToolkitSendResult? = nil)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class IqResult : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc public var config_document_detection_method: Swift.Int
+  @objc public var config_document_type: Swift.String
+  @objc public var version_platform: Swift.String
+  @objc public var all_bin_flags: Swift.Int
+  @objc public var analysis_geometry: Swift.Double
+  @objc public var analysis_lightness: Swift.Double
+  @objc public var analysis_reflection: Swift.Double
+  @objc public var analysis_sharpness: Swift.Double
+  @objc public var config_geom_doc_max_corner_delta: Swift.Double
+  @objc public var config_geom_doc_max_delta: Swift.Double
+  @objc public var config_geom_doc_mean_ratio: Swift.Double
+  @objc public var config_geom_image_border_exclude: Swift.Double
+  @objc public var config_geom_image_margins: Swift.Double
+  @objc public var config_geom_image_max_side: Swift.Double
+  @objc public var config_geom_image_min_side: Swift.Double
+  @objc public var config_light_max_mean_threshold: Swift.Double
+  @objc public var config_light_min_mean_threshold: Swift.Double
+  @objc public var config_reflex_doc_margins: Swift.Double
+  @objc public var config_reflex_min_area: Swift.Double
+  @objc public var config_reflex_threshold: Swift.Double
+  @objc public var config_sharp_threshold: Swift.Double
+  @objc public var statistic_img_cols: Swift.Int
+  @objc public var statistic_img_rows: Swift.Int
+  @objc public var statistic_n_frames: Swift.Int
+  @objc public var statistic_n_frames_ok: Swift.Int
+  @objc public var statistic_n_frames_ok_ma: Swift.Int
+  @objc public var statistic_n_locked_calls: Swift.Int
+  @objc public var statistic_n_zero_images: Swift.Int
+  @objc public var flag_all_is_ok: Swift.Bool
+  @objc public var flag_image_geometry_fails: Swift.Bool
+  @objc public var flag_image_lightness_fails: Swift.Bool
+  @objc public var flag_image_reflections_fails: Swift.Bool
+  @objc public var flag_image_sharpness_fails: Swift.Bool
+  @objc public var flag_document_is_small: Swift.Bool
+  @objc public var flag_document_ratio_fails: Swift.Bool
+  @objc public var flag_this_is_better: Swift.Bool
+  @objc public var flag_this_is_big: Swift.Bool
+  @objc public var flag_this_is_small: Swift.Bool
+  @objc public var flag_this_is_too_bright: Swift.Bool
+  @objc public var flag_this_is_too_dark: Swift.Bool
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class IqConfigs : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc public var configs_version: Swift.String
+  @objc public var document_type: Swift.String
+  @objc public var document_detection_method: Swift.Int
+  @objc public var geom_doc_max_corner_delta: Swift.Float
+  @objc public var geom_doc_max_delta: Swift.Float
+  @objc public var geom_doc_mean_ratio: Swift.Float
+  @objc public var geom_image_border_exclude: Swift.Float
+  @objc public var geom_image_margins: Swift.Float
+  @objc public var geom_image_max_side: Swift.Float
+  @objc public var geom_image_min_side: Swift.Float
+  @objc public var light_max_mean_threshold: Swift.Float
+  @objc public var light_min_mean_threshold: Swift.Float
+  @objc public var reflex_doc_margins: Swift.Float
+  @objc public var reflex_min_area: Swift.Float
+  @objc public var reflex_threshold: Swift.Float
+  @objc public var sharp_threshold: Swift.Float
+  @objc deinit
+}
+@objc public enum IDFlowType : Swift.Int {
+  case Document
+  case Liveness
+  case Complete
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum IDDocSide : Swift.Int {
+  case Front
+  case Back
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public typealias IDwallToolkitFlowResult = (_ jsonData: [Swift.AnyHashable : Any]?, _ error: (any Swift.Error)?) -> Swift.Void
+public typealias IDwallToolkitImageResult = (_ success: Swift.Bool, _ error: (any Swift.Error)?) -> Swift.Void
+public typealias IDwallToolkitSendResult = (_ jsonData: [Swift.AnyHashable : Any]?, _ error: (any Swift.Error)?) -> Swift.Void
+@_inheritsConvenienceInitializers @objc public class IDwallToolkitSettings : ObjectiveC.NSObject {
+  public var isDeveloperModeEnabled: Swift.Bool {
+    get
+  }
+  @objc public static func sharedInstance() -> IDwallToolkit.IDwallToolkitSettings
+  @discardableResult
+  @objc public func initWithAuthKey(_ authKey: Swift.String) -> Swift.Bool
+  @objc public func setupIDWallPublicKey(_ publicKeys: [Swift.String], behaviorKey: Swift.String? = nil)
+  @objc public func setOnboardingData(with data: Foundation.Data?)
+  @objc public func setEventHandler(_ handler: any IDwallToolkit.IDwallEventsHandler)
+  @objc public func enableDeveloperMode(_ isEnabled: Swift.Bool)
+  @objc public func faceFallbackActivated(_ flag: Swift.Bool)
+  @objc public func setLoggingLevel(_ level: IDwallToolkit.IDLoggingLevel)
+  @objc public func setDocumentTutorialEnabled(_ isEnabled: Swift.Bool)
+  @objc public func setLivenessTutorialEnabled(_ isEnabled: Swift.Bool)
+  @objc public func setPrimaryColor(_ color: UIKit.UIColor)
+  @objc public func hideOptionsMessageBox(_ isHidden: Swift.Bool)
+  @objc public func setUserExternalId(_ externalId: Swift.String)
+  @objc public func getSDKVersion() -> Swift.String
+  @objc public func setSdkType(_ type: Swift.String)
+  @objc public func setBridgeVersion(_ version: Swift.String)
+  @objc public func getSDKEnvironment() -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum IDLoggingLevel : Swift.Int {
+  case Minimal = 0
+  case Regular = 1
+  case Verbose = 2
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum IDWallSend : ObjectiveC.NSInteger {
+  case Document
+  case Liveness
+  case All
+  public init?(rawValue: ObjectiveC.NSInteger)
+  public typealias RawValue = ObjectiveC.NSInteger
+  public var rawValue: ObjectiveC.NSInteger {
+    get
+  }
+}
+@objc public enum IDDocumentType : Swift.UInt, Swift.RawRepresentable {
+  case RG
+  case CNH
+  case Typified
+  case CRLV
+  case RNE
+  case CRNM
+  case CIN
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+@objc public protocol IDwallEventsHandler {
+  @objc func onEvent(_ event: IDwallToolkit.IDwallEvent)
+}
+@_inheritsConvenienceInitializers @objc public class IDwallEventManager : ObjectiveC.NSObject {
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_hasMissingDesignatedInitializers @objc public class IDwallEvent : ObjectiveC.NSObject {
+  @objc final public let name: Swift.String
+  @objc final public let properties: [Swift.AnyHashable : Any]
+  @objc deinit
+}
+@objc public enum IDDocInputType : Swift.Int {
+  case Printed
+  case Digital
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension IDwallToolkit.IDFlowType : Swift.Equatable {}
+extension IDwallToolkit.IDFlowType : Swift.Hashable {}
+extension IDwallToolkit.IDFlowType : Swift.RawRepresentable {}
+extension IDwallToolkit.IDDocSide : Swift.Equatable {}
+extension IDwallToolkit.IDDocSide : Swift.Hashable {}
+extension IDwallToolkit.IDDocSide : Swift.RawRepresentable {}
+extension IDwallToolkit.IDLoggingLevel : Swift.Equatable {}
+extension IDwallToolkit.IDLoggingLevel : Swift.Hashable {}
+extension IDwallToolkit.IDLoggingLevel : Swift.RawRepresentable {}
+extension IDwallToolkit.IDWallSend : Swift.Equatable {}
+extension IDwallToolkit.IDWallSend : Swift.Hashable {}
+extension IDwallToolkit.IDWallSend : Swift.RawRepresentable {}
+extension IDwallToolkit.IDDocumentType : Swift.Equatable {}
+extension IDwallToolkit.IDDocumentType : Swift.Hashable {}
+extension IDwallToolkit.IDDocInputType : Swift.Equatable {}
+extension IDwallToolkit.IDDocInputType : Swift.Hashable {}
+extension IDwallToolkit.IDDocInputType : Swift.RawRepresentable {}
